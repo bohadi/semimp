@@ -150,7 +150,7 @@ heat p          s = case step (p,s) of
     Right (Stuck _) -> Nothing
 
 notAVal :: AExp -> Bool
-notBVal :: AExp -> Bool
+notBVal :: BExp -> Bool
 notAVal = \case (AVal _) -> False
               --(AThunk) -> False
                 _        -> True
