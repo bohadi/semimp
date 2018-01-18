@@ -1,0 +1,7 @@
+resolver: lts-10.3
+
+ghc-options:
+    "$everything": -freverse-errors
+
+packages:
+- .
