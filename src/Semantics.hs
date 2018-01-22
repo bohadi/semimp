@@ -76,8 +76,8 @@ step (Empty       ,s) = Right $ Stuck s
 step (Seq fst snd ,s) = Left (snd, run (fst ,s))
 step (Assign id (AVal v)  ,s) = Right $ Stuck s' where
     s' = if Map.member id s then Map.insert id v s else s
-step (If (BVal True)  p _ ,s) = Right $ Stuck $ run (p ,s)
-step (If (BVal False) _ p ,s) = Right $ Stuck $ run (p ,s)
+step (If (BVal True)  p _ ,s) = Left (p ,s)
+step (If (BVal False) _ p ,s) = Left (p ,s)
 step (w@(While c loop)    ,s) = Left (If c (Seq loop w) Empty  ,s)
 -- aexp
 step (AVar id ,s) = if cd then is else nt where
@@ -145,7 +145,7 @@ heat :: KItem -> State -> Maybe KItem
 heat p@(AVal _) _ = Just p
 heat p@(BVal _) _ = Just p
 heat p          s = case step (p,s) of
-    Left  (p' ,_)   ->  heat p' s
+    Left  (p' ,_)   -> heat p' s
     --Left  (p' ,_)   -> trace ("}} " ++ show p') $ heat p' s
     Right (Stuck _) -> Nothing
 
