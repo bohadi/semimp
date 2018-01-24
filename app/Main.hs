@@ -1,7 +1,7 @@
 module Main where
 
-import Semantics(run, sumPgm)
---import Opt(run, sumPgm)
+--import Semantics(run, sumPgm)
+import Opt(run, sumPgm)
 import System.IO(hFlush, stdout)
 
 main :: IO ()
