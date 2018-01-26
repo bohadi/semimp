@@ -28,6 +28,7 @@ library
   exposed-modules:
       Semantics
     , Opt
+    , Monadic
   other-modules:
       Paths_semimp
   default-language: Haskell2010
@@ -40,6 +41,7 @@ executable semimp-exe
   build-depends:
       base >=4.7 && <5
     , semimp
+    , containers
   other-modules:
       Paths_semimp
   default-language: Haskell2010
